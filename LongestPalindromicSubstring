@@ -4,8 +4,7 @@
 char temp[1000];
 int palindrome(char str[],int f,int l)
 {
-    int count=l-f;
-    count=count+1;
+    int count=l-f+1;
     int first=f;
     int last=l;
     while(f<l)

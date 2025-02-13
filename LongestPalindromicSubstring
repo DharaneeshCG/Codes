@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char temp[1000];
+int palindrome(char str[],int f,int l)
+{
+    int count=l-f;
+    count=count+1;
+    int first=f;
+    int last=l;
+    while(f<l)
+    {
+        if(str[f]!=str[l])
+        {
+            return 0;
+        }
+        f++;
+        l--;
+    }
+    static int max=0;
+    if(count>max)
+    {
+        max=count;
+        int j=0;
+        for(int i=first;i<=last;i++,j++)
+        {
+            temp[j]=str[i];
+        }
+        temp[j]='\0';
+    }
+    return 1;
+}
+int main()
+{
+    char str[1000];
+    fgets(str,sizeof(str),stdin);
+    str[strcspn(str,"\n")]=0;
+    int c=0;
+    int size=strlen(str);
+    if(size==1)
+    {
+        printf("%c",str[0]);
+        exit(0);
+        
+    }
+    for(int i=0;i<size;i++)
+    {
+        for(int j=i+1;j<size;j++)
+        {
+            if(str[i]==str[j] && palindrome(str,i,j))
+            {
+                c=1;
+                continue;
+            }
+        }
+    }
+    if(c)
+    {
+        puts(temp);
+    }
+    else
+    {
+        printf("Not there!! give some another input");
+    }
+}
